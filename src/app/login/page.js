@@ -1,8 +1,7 @@
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { loginUser } from "../../services/authService";
+import { login } from "../../services/authService";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,7 +16,7 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
     try {
-      const data = await loginUser(username.trim(), password);
+      const data = await login(username.trim(), password);
       localStorage.setItem("token", data.accessToken);
       router.replace("/products");
     } catch (err) {
